@@ -1,0 +1,31 @@
+= form_with(model: profile, class: "contents") do |form|
+  - if profile.errors.any?
+    #error_explanation.bg-red-50.text-red-500.px-3.py-2.font-medium.rounded-lg.mt-3
+      h2
+        = pluralize(profile.errors.count, "error")
+        |  prohibited this profile from being saved:
+      ul
+        - profile.errors.each do |error|
+          li
+            = error.full_message
+  .my-5
+    = form.label :first_name
+    = form.text_field :first_name, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" ,required: true
+  .my-5
+    = form.label :last_name
+    = form.text_field :last_name, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full", required: true
+  .my-5
+    = form.label :nick_name
+    = form.text_field :nick_name, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full"
+  .my-5
+    label[for="profile_email_address"]
+      | Email Address
+    input#profile_email_address.block.shadow.rounded-md.border.border-gray-200.outline-none.px-3.py-2.mt-2.w-full[data-action="input->profile-modal#validateEmail" required="required" data-profile-modal-target="emailAddressField" name="profile[email_address]"]
+    p#profile_email_error.text-red-600.hidden[data-action="input->profile-modal#validateEmail" data-profile-modal-target="emailErrorField" name="profile[email_error]"]
+      | Enter validate Email pattern(ab@gmail.com, a.b@gmail.com)
+  .my-5
+    label[for="profile_phone_number"]
+      | Phone number
+    input#profile_phone_number.block.shadow.rounded-md.border.border-gray-200.outline-none.px-3.py-2.mt-2.w-full[data-action="input->profile-modal#validatePhone" required="required" data-profile-modal-target="phoneField" name="profile[phone_number]"]
+  .inline
+    = form.submit class: "rounded-lg py-3 px-5 bg-blue-600 text-white inline-block font-medium cursor-pointer"

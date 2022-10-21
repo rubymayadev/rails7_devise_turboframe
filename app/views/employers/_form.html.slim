@@ -1,0 +1,27 @@
+= form_with(model: employer, class: "contents") do |form|
+  - if employer.errors.any?
+    #error_explanation.bg-red-50.text-red-500.px-3.py-2.font-medium.rounded-lg.mt-3
+      h2
+        = pluralize(employer.errors.count, "error")
+        |  prohibited this profile from being saved:
+      ul
+        - employer.errors.each do |error|
+          li
+            = error.full_message
+  .my-5
+    = form.label :user_profile
+    = form.collection_select :profile_id, Profile.all, :id, :first_name, include_blank: true, class: "block shadow rounded-md border border-yellow-200 outline-none px-3 py-2 mt-2 w-full"
+  #employement-fields[data-employer-modal-target='employementFields']
+    .my-5
+      label for="employer_employment"  Employment
+      input#employer_employment.block.shadow.rounded-md.border.border-gray-200.outline-none.px-3.py-2.mt-2.w-full data-action="input->employer-modal#checkEmploymentFormValidity" name="employer[employment]" required="required" type="text"
+    .my-5
+      label for="employer_start_date"  Start date
+      input#employer_start_date.block.shadow.rounded-md.border.border-gray-200.outline-none.px-3.py-2.mt-2.w-full data-action="change->employer-modal#checkEmploymentFormValidity" name="employer[start_date]" required="required" type="date"
+    .my-5
+      label for="employer_end_date"  End date
+      input#employer_end_date.block.shadow.rounded-md.border.border-gray-200.outline-none.px-3.py-2.mt-2.w-full data-action="change->employer-modal#checkEmploymentFormValidity" name="employer[end_date]" required="required" type="date"
+  #new-employement-fields[data-employer-modal-target='dynamicEmploymentFields']
+  .addEmployementBtn.rounded-lg.py-3.px-5.bg-blue-400.text-white.inline-block.font-medium.cursor-pointer data-action="click->employer-modal#addEmployementFields"  Add another employement
+  .inline
+    .createEmploymentBtn.rounded-lg.py-3.px-5.bg-blue-600.text-white.inline-block.font-medium.cursor-pointer.mt-2 data-action="click->employer-modal#submitEmploymentForm" data-employer-modal-target="employerFormSubmitBtn"  Create Employment

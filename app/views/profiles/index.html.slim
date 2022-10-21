@@ -1,0 +1,7 @@
+.w-full
+  - if notice.present?
+    p#notice.py-2.px-3.bg-green-50.mb-5.text-green-500.font-medium.rounded-lg.inline-block
+      = notice
+  .flex.items-center.justify-center.w-screen
+    = link_to 'Personal data', new_profile_path, method: :get, data: { turbo_frame: 'modal' }, class: "btn btn-secondary bg-sky-500/75 text-white p-2 m-1 rounded text-lg w-auto"
+    = link_to 'Employment', new_employer_path, method: :get, data: { turbo_frame: 'modal' }, class: "btn btn-secondary bg-yellow-500/75 text-white p-2 m-1 rounded text-lg w-auto"

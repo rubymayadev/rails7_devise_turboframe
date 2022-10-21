@@ -1,0 +1,12 @@
+<%= turbo_frame_tag "modal" do %>
+  <%= tag.div data: { controller: "profile-modal",
+                      profile_modal_target: "modal",
+                      action: "profile:submit-end->profile-modal#submitEnd keyup@window->profile-modal#closeWithKeyboard click@window->profile-modal#closeBackground submit-form->profile-modal#submitForm" },
+                      class: "p-5 bg-slate-300 absolute z-0 ml-300 top-1 bg-blur items-center justify-center rounded-md w-96",
+                        style: "margin-left: 480px; backdrop-filter: blur(8px);" do %>
+    <h1 class="font-bold text-4xl"><%= @title %></h1>
+    <%= content %>
+    <%= button_tag "Close", data: { action: "profile-modal#hideModal" }, type: "button", class: "rounded-lg py-3 px-5 bg-red-600 text-white" %>
+  <% end %>
+<% end %>
+
