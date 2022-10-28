@@ -6,7 +6,6 @@ class EmployersController < ApplicationController
   end
 
   def create
-    byebug
     @employer = Employer.create(employer_params)
       if @employer
         respond_to do |format|

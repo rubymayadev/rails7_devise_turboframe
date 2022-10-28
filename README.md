@@ -1,24 +1,35 @@
-# README
+# Employment Test Project
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
 
-Things you may want to cover:
+## Requirements
+- Ruby v3.1.0
+- Rails 7.0.2
+- MySQL v8.0.29
 
-* Ruby version
+## Installation
 
-* System dependencies
+Install the dependencies and devDependencies and bundle install to install all the required gems.
 
-* Configuration
+```sh
+bundle install
+```
+Setup the database
+```sh
+./bin/rails db:setup
+```
+Run the server
+```sh
+./bin/dev
+```
 
-* Database creation
+## Basic Usage
 
-* Database initialization
+This app is built using Stimulus, Turbo, Slim, Rails. Tests of the app are written using Rspec.
+App consists of two buttons:
 
-* How to run the test suite
+- Personal Data
+- Employment
+    
+Personal Data opens up a modal which consists of fields asking for your information. This modal takes up the information and on clicking save this information gets saved into the database.
 
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+Employment section is also a modal having fields related to employment details. One extra button in this modal is "Add another Employment". This button provides the oppourtunity to the user to add multiple employment details in the modal and save those multiple employements in the database using a single button click. Purpose of this section is to get employment information from the user and save that information in the database.
